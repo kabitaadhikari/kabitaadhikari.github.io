@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Kabita Adhikari – Data Science Portfolio</title>
+  <title>Kabita Adhikari – Data Analyst Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -12,12 +12,35 @@
       color: #1f2933;
       line-height: 1.6;
     }
+    a { color: inherit; }
+
     header {
       background: linear-gradient(135deg, #2563eb, #9333ea);
       color: white;
-      padding: 3rem 1rem 4rem;
+      padding: 2.5rem 1rem 4rem;
     }
-    .container { max-width: 960px; margin: 0 auto; padding: 0 1rem; }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.95;
+    }
+    .top-nav a {
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    .top-nav a:hover {
+      border-bottom-color: rgba(255,255,255,0.8);
+    }
+
     .hero {
       display: flex;
       flex-wrap: wrap;
@@ -25,9 +48,18 @@
       gap: 2rem;
     }
     .hero-text { flex: 2 1 260px; }
-    .hero-text h1 { font-size: 2.4rem; margin-bottom: 0.5rem; }
-    .hero-text h2 { font-size: 1.2rem; font-weight: 400; opacity: 0.95; }
-    .hero-badge { margin-top: 0.75rem; font-size: 0.9rem; opacity: 0.9; }
+    .hero-text h1 { font-size: 2.4rem; margin-bottom: 0.4rem; }
+    .hero-text h2 { font-size: 1.1rem; font-weight: 500; opacity: 0.97; }
+    .hero-tagline {
+      margin-top: 0.6rem;
+      font-size: 0.95rem;
+      opacity: 0.95;
+    }
+    .hero-badge {
+      margin-top: 0.4rem;
+      font-size: 0.9rem;
+      opacity: 0.95;
+    }
     .hero-photo {
       flex: 1 1 180px;
       text-align: center;
@@ -64,19 +96,28 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
     }
     .btn-primary {
       background: white;
       color: #1d4ed8;
       font-weight: 600;
+      box-shadow: 0 10px 30px rgba(15,23,42,0.25);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 40px rgba(15,23,42,0.3);
     }
     .btn-outline {
       border: 1px solid rgba(255,255,255,0.8);
       color: white;
       background: transparent;
     }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+    }
 
-    main { margin-top: -2.5rem; padding-bottom: 3rem; }
+    main { margin-top: -2.3rem; padding-bottom: 3rem; }
     section {
       background: white;
       border-radius: 16px;
@@ -97,20 +138,23 @@
       gap: 1.5rem;
     }
     ul { margin-left: 1.25rem; margin-top: 0.5rem; }
-    li { margin-bottom: 0.25rem; }
+    li { margin-bottom: 0.3rem; }
 
-    .tags {
+    .pill-list {
+      list-style: none;
+      margin-left: 0;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.75rem;
+      gap: 0.4rem;
+      margin-top: 0.6rem;
     }
-    .tag {
-      font-size: 0.8rem;
+    .pill-list li {
       background: #eff2ff;
       color: #1d4ed8;
-      padding: 0.25rem 0.6rem;
       border-radius: 999px;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.8rem;
+      margin-bottom: 0;
     }
 
     .projects {
@@ -125,11 +169,18 @@
       padding: 1rem 1rem 1.1rem;
       background: #fbfcff;
     }
-    .project-card h4 { margin-bottom: 0.35rem; font-size: 1rem; }
+    .project-card h4 {
+      margin-bottom: 0.35rem;
+      font-size: 1rem;
+    }
     .project-meta {
       font-size: 0.8rem;
       color: #6b7280;
       margin-bottom: 0.4rem;
+    }
+    .project-card p {
+      font-size: 0.9rem;
+      margin-bottom: 0.6rem;
     }
     .project-card a {
       font-size: 0.85rem;
@@ -137,10 +188,16 @@
       color: #2563eb;
       font-weight: 500;
     }
+    .project-card a:hover {
+      text-decoration: underline;
+    }
 
     .contact-list a {
       color: #2563eb;
       text-decoration: none;
+    }
+    .contact-list a:hover {
+      text-decoration: underline;
     }
     .contact-list li { margin-bottom: 0.35rem; }
 
@@ -152,7 +209,8 @@
     }
 
     @media (max-width: 700px) {
-      header { padding-top: 2.2rem; padding-bottom: 3rem; }
+      header { padding-top: 1.8rem; padding-bottom: 3rem; }
+      .top-nav { justify-content: center; margin-bottom: 1rem; }
       .hero { flex-direction: column-reverse; text-align: center; }
       .hero-text h1 { font-size: 2rem; }
       section { border-radius: 0.75rem; }
@@ -162,24 +220,45 @@
 </head>
 <body>
   <header>
-    <div class="container hero">
-      <div class="hero-text">
-        <h1>Kabita Adhikari</h1>
-        <h2>Master of Data Science · Canberra, Australia</h2>
-        <p class="hero-badge">
-          Aspiring data analyst with experience in Python, R, and machine-learning projects.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#projects">View my projects</a>
-          <a class="btn btn-outline" href="https://github.com/kabitaadhikari" target="_blank">
-            GitHub Profile
-          </a>
+    <div class="container">
+      <nav class="top-nav">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="hero">
+        <div class="hero-text">
+          <h1>Kabita Adhikari</h1>
+          <h2>Master of Data Science Graduate · Canberra, Australia</h2>
+
+          <p class="hero-tagline">
+            Data Analyst | Python · R · SQL · Power BI · Tableau
+          </p>
+          <p class="hero-badge">
+            Data Analyst with experience in Python, R, SQL, Power BI and end-to-end
+            machine-learning pipelines. Skilled in data cleaning, analysis, visualisation
+            and delivering actionable insights.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View my projects</a>
+            <!-- Update the file name below to match your actual resume PDF -->
+            <a class="btn btn-outline" href="Kabita_Adhikari_Resume.pdf" target="_blank">
+              Download resume
+            </a>
+            <a class="btn btn-outline" href="https://github.com/kabitaadhikari" target="_blank">
+              GitHub profile
+            </a>
+          </div>
         </div>
-      </div>
-      <div class="hero-photo">
-        <div class="circle">
-          <!-- Make sure profile.jpg exists in this repo -->
-          <img src="profile.jpg" alt="Kabita Adhikari">
+
+        <div class="hero-photo">
+          <div class="circle">
+            <!-- Make sure profile.jpg exists in this repo (same folder as this HTML) -->
+            <img src="profile.jpg" alt="Portrait of Kabita Adhikari">
+          </div>
         </div>
       </div>
     </div>
@@ -191,21 +270,27 @@
       <div class="two-col">
         <div>
           <p>
-            I am a Master of Data Science Graduate at the University of Canberra, passionate about
-            turning real-world problems into data-driven insights. My recent work includes flight
-            delay prediction, anomaly detection in health data, and exploratory analysis in R and Python.
+            I am a Master of Data Science graduate from the University of Canberra with
+            hands-on experience in analytics, machine learning, and data visualisation.
+            I specialise in transforming raw datasets into clear, meaningful insights that
+            support real-world decision-making.
           </p>
           <p>
-            I enjoy building clear, reproducible analyses and visualisations that can support
-            better decisions for businesses and communities.
+            My recent work includes building a 7M+ record flight delay prediction model,
+            performing anomaly detection on health and sensor datasets, and conducting
+            exploratory analysis in both Python and R. I enjoy creating clean, reproducible
+            workflows and visualisations that help businesses and communities make informed
+            decisions.
           </p>
         </div>
         <div>
           <strong>Quick facts</strong>
           <ul>
             <li>Based in Canberra, Australia 🇦🇺</li>
-            <li>Interested in Data Analyst / Junior Data Scientist roles</li>
-            <li>Comfortable with Python, R, SQL,Tableu and Power BI</li>
+            <li>Open to Data Analyst, Graduate Data Scientist, and BI roles</li>
+            <li>Skilled in Python, R, SQL, Power BI and Tableau</li>
+            <li>Experienced with Git, GitHub and Git LFS for reproducible projects</li>
+            <li>Background in healthcare and customer-facing roles, supporting strong communication</li>
           </ul>
         </div>
       </div>
@@ -217,33 +302,39 @@
         <div>
           <strong>Data & Programming</strong>
           <ul>
-            <li>Python (Pandas, NumPy, scikit-learn, Matplotlib)</li>
+            <li>Python (Pandas, NumPy, scikit-learn, Matplotlib, Seaborn)</li>
             <li>R (tidyverse, ggplot2, caret)</li>
-            <li>SQL (data extraction and cleaning)</li>
+            <li>SQL (data extraction, joins, cleaning, aggregation)</li>
           </ul>
 
-          <strong>Analysis & ML</strong>
+          <strong>Machine Learning & Analysis</strong>
           <ul>
             <li>Classification & regression models</li>
-            <li>EDA, feature engineering, model evaluation</li>
+            <li>EDA and feature engineering</li>
+            <li>Model evaluation (ROC-AUC, F1, precision/recall)</li>
             <li>Basic time-series and forecasting</li>
+            <li>Anomaly detection on sensor and health data</li>
           </ul>
         </div>
         <div>
           <strong>Tools & Workflow</strong>
           <ul>
+            <li>Power BI, Tableau</li>
             <li>Jupyter Notebook, RStudio</li>
-            <li>Git & GitHub (version control)</li>
-            <li>Power BI / data visualisation</li>
+            <li>Git, GitHub, Git LFS</li>
+            <li>Data cleaning, documentation and reproducible workflows</li>
           </ul>
 
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">R</span>
-            <span class="tag">SQL</span>
-            <span class="tag">Power BI</span>
-            <span class="tag">Machine Learning</span>
-          </div>
+          <ul class="pill-list">
+            <li>Python</li>
+            <li>R</li>
+            <li>SQL</li>
+            <li>Power BI</li>
+            <li>Tableau</li>
+            <li>Machine Learning</li>
+            <li>EDA</li>
+            <li>Data Visualisation</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -253,10 +344,12 @@
       <div class="projects">
         <div class="project-card">
           <h4>Flight Delay Prediction</h4>
-          <p class="project-meta">Python · Classification · 7M+ rows</p>
+          <p class="project-meta">Python · Classification · 7M+ records</p>
           <p>
-            Built an on-premises machine-learning pipeline to predict if a US domestic
-            flight will be delayed by 15+ minutes using BTS on-time performance data.
+            Built an end-to-end machine-learning pipeline using US BTS on-time flight data
+            to predict whether a domestic flight will be delayed by 15+ minutes.
+            Included extensive EDA, feature engineering, imbalance handling and model
+            evaluation with ROC and precision/recall metrics.
           </p>
           <a href="https://github.com/kabitaadhikari/Flightdelay_assignment" target="_blank">
             View on GitHub →
@@ -264,11 +357,24 @@
         </div>
 
         <div class="project-card">
+          <h4>Health Data Anomaly Detection</h4>
+          <p class="project-meta">Python · Health & Sensor Data · Classification</p>
+          <p>
+            Analysed multi-source physiological and activity data from a home-monitoring
+            setting to detect anomalous patterns related to behavioural changes. Cleaned and
+            merged large sensor datasets, engineered features, and applied ML classifiers
+            with a focus on recall and sensitivity for healthcare applications.
+          </p>
+          <!-- Add your real repo link when ready -->
+          <!-- <a href="YOUR_REPO_LINK" target="_blank">View on GitHub →</a> -->
+        </div>
+
+        <div class="project-card">
           <h4>Git Project & Workflow Practice</h4>
           <p class="project-meta">Git · GitHub · Version control</p>
           <p>
-            Hands-on repository demonstrating clean commit history, branching and good
-            collaboration practices using Git and GitHub.
+            Hands-on repository demonstrating clean commit history, branching strategies,
+            pull requests and good collaboration practices using Git and GitHub.
           </p>
           <a href="https://github.com/kabitaadhikari/Git_Project" target="_blank">
             View on GitHub →
@@ -276,11 +382,12 @@
         </div>
 
         <div class="project-card">
-          <h4>LFS Practice</h4>
+          <h4>Git LFS Practice</h4>
           <p class="project-meta">Git LFS · Large Files</p>
           <p>
-            Experimented with Git LFS to manage large datasets and notebooks, preparing
-            for real-world data science projects with heavy files.
+            Experimented with Git LFS to manage large datasets and notebooks effectively,
+            preparing for real-world data science projects that involve heavy files and
+            reproducible pipelines.
           </p>
           <a href="https://github.com/kabitaadhikari/lfs-practice" target="_blank">
             View on GitHub →
@@ -292,17 +399,24 @@
     <section id="contact">
       <h3>Contact</h3>
       <ul class="contact-list">
-        <li>Email: <a href="mailto:kkabitaadhikari@gmail.com">kkabitaadhikari@gmail.com</a></li>
-        <li>LinkedIn: <a href="https://www.linkedin.com/in/kabita-adhikari" target="_blank">
-          linkedin.com/in/kabita-adhikari
-        </a></li>
-        <li>GitHub: <a href="https://github.com/kabitaadhikari" target="_blank">
-          github.com/kabitaadhikari
-        </a></li>
+        <li>Email:
+          <a href="mailto:kkabitaadhikari@gmail.com">kkabitaadhikari@gmail.com</a>
+        </li>
+        <li>LinkedIn:
+          <a href="https://www.linkedin.com/in/kabita-adhikari" target="_blank">
+            linkedin.com/in/kabita-adhikari
+          </a>
+        </li>
+        <li>GitHub:
+          <a href="https://github.com/kabitaadhikari" target="_blank">
+            github.com/kabitaadhikari
+          </a>
+        </li>
       </ul>
       <p style="margin-top:0.75rem;font-size:0.9rem;">
-        I’m open to graduate and entry-level data roles in Australia.
-        Feel free to reach out for collaborations or opportunities.
+        I’m open to graduate and entry-level roles in Australia across data analytics,
+        data science, BI and machine learning. Feel free to reach out for collaborations
+        or opportunities.
       </p>
     </section>
   </main>
